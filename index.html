@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json">
+  <title>easyVtuber</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <figure id="load">
+    <img src="./assets/images/eomc.svg" alt="" class="chara">
+    <img src="./assets/images/ecmc.svg" alt="" class="chara">
+    <img src="./assets/images/eomo.svg" alt="" class="chara">
+    <img src="./assets/images/ecmo.svg" alt="" class="chara">
+  </figure>
+  <figure id="vtuber">
+  </figure>
+  <script src="./assets/js/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').then( registration => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch( err => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    }
+  </script>
+</body>
+</html>
