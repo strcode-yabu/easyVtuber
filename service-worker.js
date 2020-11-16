@@ -1,12 +1,12 @@
 const cacheName = 'easyVtuber-caches';
 const urlsToCache = [
-  '/',
-  '/assets/css/style.css',
-  '/assets/js/main.js',
-  '/assets/images/ecmc.svg',
-  '/assets/images/ecmo.svg',
-  '/assets/images/eomc.svg',
-  '/assets/images/eomo.svg'
+  '/easyVtuber/',
+  '/easyVtuber/assets/css/style.css',
+  '/easyVtuber/assets/js/main.js',
+  '/easyVtuber/assets/images/ecmc.svg',
+  '/easyVtuber/assets/images/ecmo.svg',
+  '/easyVtuber/assets/images/eomc.svg',
+  '/easyVtuber/assets/images/eomo.svg'
 ];
 
 self.addEventListener('install', event => {
