@@ -1,6 +1,6 @@
 {
-  "short_name": "essyVT",
-  "name": "essyVtuber",
+  "short_name": "easyVT",
+  "name": "easyVtuber",
   "display": "standalone",
   "background_color": "transparent",
   "start_url": "index.html",
