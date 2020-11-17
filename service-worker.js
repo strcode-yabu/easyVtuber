@@ -8,6 +8,16 @@ const urlsToCache = [
   '/easyVtuber/assets/images/eomc.svg',
   '/easyVtuber/assets/images/eomo.svg'
 ];
+// Test Directory.
+// const urlsToCache = [
+//   '/',
+//   '/assets/css/style.css',
+//   '/assets/js/main.js',
+//   '/assets/images/ecmc.svg',
+//   '/assets/images/ecmo.svg',
+//   '/assets/images/eomc.svg',
+//   '/assets/images/eomo.svg'
+// ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
