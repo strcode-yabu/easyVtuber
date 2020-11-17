@@ -2,6 +2,7 @@
   "short_name": "essyVT",
   "name": "essyVtuber",
   "display": "standalone",
+  "background_color": "transparent",
   "start_url": "index.html",
   "icons": [
     {
