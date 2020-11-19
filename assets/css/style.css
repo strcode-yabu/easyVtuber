@@ -3,29 +3,22 @@
 :root {
   --char-width: calc(639px / 2);
   --char-height: calc(899.3px / 2);
+  --char-eomc: url(../images/eomc.svg);
+  --char-ecmc: url(../images/ecmc.svg);
+  --char-eomo: url(../images/eomo.svg);
+  --char-ecmc: url(../images/ecmc.svg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 body {
   background: transparent;
+  padding: 10px;
+  overflow: hidden;
 }
-#vtuber {
-  width: var(--char-width);
-  height: var(--char-height);
-  background: url(../images/eomc.svg) no-repeat center center;
-  background-size: contain;
-  animation: waits 5s infinite;
-}
-#vtuber.talk {
-  animation: talks 10s infinite;
-}
-#load {
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-.chara {
-  width: 0;
-  height: 0;
-}
+
 @keyframes talks {
   0%, 10%,
   14%, 15%,
@@ -38,7 +31,7 @@ body {
   73%, 75%,
   85%, 88%,
   92%, 100% {
-    background: url(../images/eomc.svg) no-repeat center center;
+    background: var(--char-eomc) no-repeat center center;
     background-size: contain;
   }
   11%, 13%,
@@ -49,27 +42,56 @@ body {
   56%, 59%,
   68%, 72%,
   76%, 79% {
-    background: url(../images/eomo.svg) no-repeat center center;
+    background: var(--char-eomo) no-repeat center center;
     background-size: contain;
   }
   34%, 35%,
   80%, 84% {
-    background: url(../images/ecmo.svg) no-repeat center center;
+    background: var(--char-ecmo) no-repeat center center;
     background-size: contain;
   }
   41%, 44%,
   89%, 91% {
-    background: url(../images/ecmc.svg) no-repeat center center;
+    background: var(--char-ecmc) no-repeat center center;
     background-size: contain;
   }
 }
 @keyframes waits {
   0%, 44%, 50%, 56%, 100% {
-    background: url(../images/eomc.svg) no-repeat center center;
+    background: var(--char-eomc) no-repeat center center;
     background-size: contain;
   }
   45%, 49%, 51%, 55% {
-    background: url(../images/ecmc.svg) no-repeat center center;
+    background: var(--char-ecmc) no-repeat center center;
     background-size: contain;
   }
+}
+@keyframes breath {
+  0%, 100% {
+    transform: scale(1.0);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+#vtuber {
+  width: var(--char-width);
+  height: var(--char-height);
+  background: var(--char-eomc) no-repeat center center;
+  background-size: contain;
+  animation: waits 5s infinite, breath 2.5s infinite;
+}
+#vtuber.talk {
+  animation: talks 10s infinite, breath 2.5s infinite;
+}
+
+#load {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.chara {
+  width: 0;
+  height: 0;
 }
