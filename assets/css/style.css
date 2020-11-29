@@ -1,97 +1,108 @@
-@charset "UTF-8";
-
 :root {
   --char-width: calc(639px / 2);
   --char-height: calc(899.3px / 2);
-  --char-eomc: url(../images/eomc.svg);
-  --char-ecmc: url(../images/ecmc.svg);
-  --char-eomo: url(../images/eomo.svg);
-  --char-ecmc: url(../images/ecmc.svg);
 }
 
 * {
   margin: 0;
   padding: 0;
 }
+
 body {
   background: transparent;
   padding: 10px;
   overflow: hidden;
 }
 
-@keyframes talks {
-  0%, 10%,
-  14%, 15%,
-  23%, 25%,
-  29%, 31%,
-  36%, 40%,
-  45%, 48%,
-  53%, 55%,
-  60%, 67%,
-  73%, 75%,
-  85%, 88%,
-  92%, 100% {
-    background: var(--char-eomc) no-repeat center center;
-    background-size: contain;
-  }
-  11%, 13%,
-  16%, 22%,
-  26%, 28%,
-  32%, 33%,
-  49%, 52%,
-  56%, 59%,
-  68%, 72%,
-  76%, 79% {
-    background: var(--char-eomo) no-repeat center center;
-    background-size: contain;
-  }
-  34%, 35%,
-  80%, 84% {
-    background: var(--char-ecmo) no-repeat center center;
-    background-size: contain;
-  }
-  41%, 44%,
-  89%, 91% {
-    background: var(--char-ecmc) no-repeat center center;
-    background-size: contain;
-  }
+.display_hidden {
+  opacity: 0;
 }
-@keyframes waits {
-  0%, 44%, 50%, 56%, 100% {
-    background: var(--char-eomc) no-repeat center center;
-    background-size: contain;
-  }
-  45%, 49%, 51%, 55% {
-    background: var(--char-ecmc) no-repeat center center;
-    background-size: contain;
-  }
-}
-@keyframes breath {
+
+@-webkit-keyframes breath {
   0%, 100% {
-    transform: scale(1.0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   50% {
-    transform: scale(1.025);
+    -webkit-transform: scale(1.025);
+            transform: scale(1.025);
+  }
+}
+
+@keyframes breath {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.025);
+            transform: scale(1.025);
   }
 }
 
 #vtuber {
+  position: relative;
   width: var(--char-width);
   height: var(--char-height);
-  background: var(--char-eomc) no-repeat center center;
-  background-size: contain;
-  animation: waits 5s infinite, breath 2.5s infinite;
-}
-#vtuber.talk {
-  animation: talks 10s infinite, breath 2.5s infinite;
+  -webkit-animation: breath 2.5s infinite;
+          animation: breath 2.5s infinite;
 }
 
-#load {
-  width: 0;
-  height: 0;
+#vtuber--pause,
+#vtuber--blink,
+#vtuber--talk,
+#vtuber--talk_and_blink,
+.vtuber__image {
+  width: 100%;
+  height: 100%;
+}
+
+#vtuber--pause,
+#vtuber--blink,
+#vtuber--talk,
+#vtuber--talk_and_blink {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#vtuber--blink,
+#vtuber--talk,
+#vtuber--talk_and_blink {
   opacity: 0;
 }
-.chara {
-  width: 0;
-  height: 0;
+
+#vtuber--pause {
+  z-index: 1;
 }
+
+#vtuber--blink {
+  z-index: 2;
+}
+
+#vtuber--talk {
+  z-index: 3;
+}
+
+#vtuber--talk_and_blink {
+  z-index: 4;
+}
+
+#now_blink:checked + #now_talk + #vtuber--pause,
+#now_blink + #now_talk:checked + #vtuber--pause,
+#now_blink:checked + #now_talk:checked + #vtuber--pause {
+  opacity: 0;
+}
+
+#now_blink:checked + #now_talk + #vtuber--pause + #vtuber--blink {
+  opacity: 1;
+}
+
+#now_talk:checked + #vtuber--pause + #vtuber--blink + #vtuber--talk {
+  opacity: 1;
+}
+
+#now_blink:checked + #now_talk:checked + #vtuber--pause + #vtuber--blink + #vtuber--talk + #vtuber--talk_and_blink {
+  opacity: 1;
+}
+/*# sourceMappingURL=style.css.map */

@@ -8,14 +8,22 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-  <figure id="load">
-    <img src="./assets/images/eomc.svg" alt="" class="chara">
-    <img src="./assets/images/ecmc.svg" alt="" class="chara">
-    <img src="./assets/images/eomo.svg" alt="" class="chara">
-    <img src="./assets/images/ecmo.svg" alt="" class="chara">
-  </figure>
-  <figure id="vtuber">
-  </figure>
+  <div id="vtuber">
+    <input type="checkbox" id="now_blink" class="display_hidden">
+    <input type="checkbox" id="now_talk" class="display_hidden">
+    <figure id="vtuber--pause">
+      <img class="vtuber__image" src="./assets/images/eomc.svg" alt="">
+    </figure>
+    <figure id="vtuber--blink">
+      <img class="vtuber__image" src="./assets/images/ecmc.svg" alt="">
+    </figure>
+    <figure id="vtuber--talk">
+      <img class="vtuber__image" src="./assets/images/eomo.svg" alt="">
+    </figure>
+    <figure id="vtuber--talk_and_blink">
+      <img class="vtuber__image" src="./assets/images/ecmo.svg" alt="">
+    </figure>
+  </div>
   <script src="./assets/js/main.js"></script>
   <script>
     if ('serviceWorker' in navigator) {

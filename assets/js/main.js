@@ -1,9 +1,12 @@
 'use strict';
       
 {
-  const chara = document.querySelector('#vtuber');
+  const nowBlink = document.querySelector('#now_blink');
+  const nowTalk = document.querySelector('#now_talk');
   const windowWidth = 639 / 2 + 20;
   const windowHeight = 899.3 / 2 + 20;
+
+  const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const recognition = new webkitSpeechRecognition();
   
@@ -15,11 +18,21 @@
     recognition.start();
   }
   recognition.onspeechstart = event => {
-    chara.classList.add('talk');
+    nowTalk.checked = true;
   }
   recognition.onspeechend = event => {
-    chara.classList.remove('talk');
+    nowTalk.checked = false;
   }
   
+  setInterval( () => {
+    setTimeout( () => {
+      if (nowBlink.checked) {
+        nowBlink.checked = false;
+      } else {
+        nowBlink.checked = true;
+      }
+    }, Math.random() * 1000 + 1000);
+  }, 1000);
+
   recognition.start();
 }
