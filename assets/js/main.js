@@ -6,7 +6,7 @@
   const windowWidth = 639 / 2 + 20;
   const windowHeight = 899.3 / 2 + 20;
 
-  const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  let blinkTiming = 0;
 
   const recognition = new webkitSpeechRecognition();
   
@@ -25,13 +25,14 @@
   }
   
   setInterval( () => {
+    blinkTiming = Math.floor(Math.random() * 1000) + 1000;
     setTimeout( () => {
       if (nowBlink.checked) {
         nowBlink.checked = false;
       } else {
         nowBlink.checked = true;
       }
-    }, Math.random() * 1000 + 1000);
+    }, blinkTiming);
   }, 1000);
 
   recognition.start();
