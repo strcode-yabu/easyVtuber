@@ -7,6 +7,8 @@
   const windowHeight = 899.3 / 2 + 20;
 
   let blinkTiming = 0;
+  let talkTiming = 0;
+  let talkingFlag = false;
 
   const recognition = new webkitSpeechRecognition();
   
@@ -18,14 +20,15 @@
     recognition.start();
   }
   recognition.onspeechstart = event => {
-    nowTalk.checked = true;
+    talkingFlag = true;
   }
   recognition.onspeechend = event => {
-    nowTalk.checked = false;
+    talkingFlag = false;
   }
   
   setInterval( () => {
     blinkTiming = Math.floor(Math.random() * 1000) + 1000;
+    talkTiming = Math.floor(Math.random() * 1000) + 1000;
     setTimeout( () => {
       if (nowBlink.checked) {
         nowBlink.checked = false;
@@ -33,6 +36,15 @@
         nowBlink.checked = true;
       }
     }, blinkTiming);
+    setTimeout( () => {
+      if (nowTalk.checked) {
+        nowTalk.checked = false;
+      } else {
+        if (talkingFlag) {
+          nowTalk.checked = true;
+        }
+      }
+    }, talkTiming);
   }, 1000);
 
   recognition.start();
