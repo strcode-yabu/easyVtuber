@@ -1,19 +1,28 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-  --char-width: calc(639px / 2);
-  --char-height: calc(899.3px / 2);
+  --char-width: 450px;
+  --char-height: 800px;
+  --color-white: rgb(255, 255, 255);
+  --color-black: rgb(0, 0, 0);
+  --color-green: rgb( 0, 255, 0);
+  --color-blue: rgb(0, 0, 255);
+  --color-pink: rgb(255, 0, 255);
+  --color-yellow: rgb(255, 255, 0);
 }
 
 * {
+  font-family: 'Roboto', 'M PLUS 1p', sans-serif;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html, 
 body {
-  background: transparent;
-  padding: 10px;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .display_hidden {
@@ -21,69 +30,157 @@ body {
 }
 
 @keyframes breath {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.0);
   }
   50% {
-    transform: scale(1.025);
+    transform: scale(1.015);
   }
 }
 
-#vtuber {
-  position: relative;
+.vtuber {
   width: var(--char-width);
   height: var(--char-height);
-  animation: breath 2.5s infinite;
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  overflow: hidden;
+  position: relative;
+  &.bg {
+    &_white {
+      background: var(--color-white);
+    }
+    &_green {
+      background: var(--color-green);
+    }
+    &_blue {
+      background: var(--color-blue);
+    }
+    &_pink {
+      background: var(--color-pink);
+    }
+    &_yellow {
+      background: var(--color-yellow);
+    }
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  &--pause,
+  &--blink,
+  &--talk,
+  &--talk_and_blink {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation: breath 2.5s infinite;
+  }
+  &--blink,
+  &--talk,
+  &--talk_and_blink {
+    opacity: 0;
+  }
+  &--pause {
+    z-index: 1;
+  }
+  &--blink {
+    z-index: 2;
+  }
+  &--talk {
+    z-index: 3;
+  }
+  &--talk_and_blink {
+    z-index: 4;
+  }
 }
 
-#vtuber--pause,
-#vtuber--blink,
-#vtuber--talk,
-#vtuber--talk_and_blink,
-.vtuber__image
-{
-  width: 100%;
-  height: 100%;
+.now_blink {
+  &:checked + .now_talk,
+  & + .now_talk:checked,
+  &:checked + .now_talk:checked {
+    & + .vtuber--pause {
+      opacity: 0;
+    }
+  }
+  &:checked + .now_talk + .vtuber--pause + .vtuber--blink {
+    opacity: 1;
+  }
+  &:checked + .now_talk:checked + .vtuber--pause + .vtuber--blink + .vtuber--talk + .vtuber--talk_and_blink {
+    opacity: 1;
+  }
+}
+.now_talk {
+  &:checked + .vtuber--pause + .vtuber--blink + .vtuber--talk {
+    opacity: 1;
+  }
 }
 
-#vtuber--pause,
-#vtuber--blink,
-#vtuber--talk,
-#vtuber--talk_and_blink {
-  position: absolute;
-  top: 0;
-  left: 0;
+.wrap {
+  padding: 32px;
+  display: flex;
+  &_left {
+    margin-right: 16px;
+  }
 }
 
-#vtuber--blink,
-#vtuber--talk,
-#vtuber--talk_and_blink {
-  opacity: 0;
+.select_box {
+  font-size: 1.2rem;
+  border-radius: 4px;
+  padding: .25em .75em;
+  &__white {
+    background: var(--color-white);
+  }
+  &__green {
+    background: var(--color-green);
+  }
+  &__blue {
+    color: var(--color-white);
+    background: var(--color-blue);
+  }
+  &__pink {
+    background: var(--color-pink);
+  }
+  &__yellow {
+    background: var(--color-yellow);
+  }
 }
 
-#vtuber--pause {
-  z-index: 1;
+.setting_section {
+  margin-bottom: 32px;
+  &__title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    &::before {
+      content: '-';
+      margin-right: 8px;
+    }
+  }
 }
-#vtuber--blink {
-  z-index: 2;
-}
-#vtuber--talk {
-  z-index: 3;
-}
-#vtuber--talk_and_blink {
-  z-index: 4;
-}
-#now_blink:checked + #now_talk + #vtuber--pause,
-#now_blink + #now_talk:checked + #vtuber--pause,
-#now_blink:checked + #now_talk:checked + #vtuber--pause {
-  opacity: 0;
-}
-#now_blink:checked + #now_talk + #vtuber--pause + #vtuber--blink {
-  opacity: 1;
-}
-#now_talk:checked + #vtuber--pause + #vtuber--blink + #vtuber--talk {
-  opacity: 1;
-}
-#now_blink:checked + #now_talk:checked + #vtuber--pause + #vtuber--blink + #vtuber--talk + #vtuber--talk_and_blink {
-  opacity: 1;
+.image {
+  &__label {
+    margin-bottom: 16px;
+    display: block;
+  }
+  &__wrap {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &__title {
+    width: 8em;
+    font-weight: bold;
+    &::after {
+      content: ':';
+      margin-right: 8px;
+    }
+  }
 }

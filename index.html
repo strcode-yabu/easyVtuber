@@ -1,38 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="manifest.json">
-  <title>easyVtuber</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-  <div id="vtuber">
-    <input type="checkbox" id="now_blink" class="display_hidden">
-    <input type="checkbox" id="now_talk" class="display_hidden">
-    <figure id="vtuber--pause">
-      <img class="vtuber__image" src="./assets/images/eomc.svg" alt="">
-    </figure>
-    <figure id="vtuber--blink">
-      <img class="vtuber__image" src="./assets/images/ecmc.svg" alt="">
-    </figure>
-    <figure id="vtuber--talk">
-      <img class="vtuber__image" src="./assets/images/eomo.svg" alt="">
-    </figure>
-    <figure id="vtuber--talk_and_blink">
-      <img class="vtuber__image" src="./assets/images/ecmo.svg" alt="">
-    </figure>
-  </div>
-  <script src="./assets/js/main.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').then( registration => {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }).catch( err => {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    }
-  </script>
-</body>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>easyVtuber</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="wrap_left">
+        <section id="vtuber_area">
+          <div id="vtuber" class="vtuber bg_white">
+            <input type="checkbox" id="now_blink" class="now_blink display_hidden">
+            <input type="checkbox" id="now_talk" class="now_talk display_hidden">
+            <figure class="vtuber--pause">
+              <img class="vtuber__image" id="vtuber__pause" src="./assets/images/eomc.png" alt="">
+            </figure>
+            <figure class="vtuber--blink">
+              <img class="vtuber__image" id="vtuber__blink" src="./assets/images/ecmc.png" alt="">
+            </figure>
+            <figure class="vtuber--talk">
+              <img class="vtuber__image" id="vtuber__talk" src="./assets/images/eomo.png" alt="">
+            </figure>
+            <figure class="vtuber--talk_and_blink">
+              <img class="vtuber__image" id="vtuber__talk_and_blink" src="./assets/images/ecmo.png" alt="">
+            </figure>
+          </div>
+        </section>
+      </div>
+      <div class="wrap_right">
+        <section id="change__bg_color" class="setting_section">
+          <h2 class="setting_section__title">Change background color.</h2>
+          <select id="select__bg_color" class="select_box">
+            <option class="select_box__white" value="white">White</option>
+            <option class="select_box__green" value="green">Green</option>
+            <option class="select_box__blue" value="blue">Blue</option>
+            <option class="select_box__pink" value="pink">Pink</option>
+            <option class="select_box__yellow" value="yellow">Yellow</option>
+          </select>
+        </section>
+        <section id="set_images" class="setting_section">
+          <h2 class="setting_section__title">Set Vtuber images.</h2>
+          <label class="image__label">
+            <dl class="image__wrap">
+              <dt class="image__title">Pause</dt>
+              <dd class="image__value">
+                <input type="file" class="image__input" name="image__pause" id="image__pause" accept="image/*">
+              </dd>
+            </dl>
+          </label>
+          <label class="image__label">
+            <dl class="image__wrap">
+              <dt class="image__title">Blink</dt>
+              <dd class="image__value">
+                <input type="file" class="image__input" name="image__blink" id="image__blink" accept="image/*">
+              </dd>
+            </dl>
+          </label>
+          <label class="image__label">
+            <dl class="image__wrap">
+              <dt class="image__title">Talk</dt>
+              <dd class="image__value">
+                <input type="file" class="image__input" name="image__talk" id="image__talk" accept="image/*">
+              </dd>
+            </dl>
+          </label>
+          <label class="image__label">
+            <dl class="image__wrap">
+              <dt class="image__title">Talk and Blink</dt>
+              <dd class="image__value">
+                <input type="file" class="image__input" name="image__talk_and_blink" id="image__talk_and_blink" accept="image/*">
+              </dd>
+            </dl>
+            
+          </label>
+        </section>
+      </div>
+    </div>
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
 </html>
