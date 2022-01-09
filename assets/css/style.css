@@ -192,6 +192,11 @@ body {
   margin-right: 8px;
 }
 
+.setting_section__paragraph {
+  font-size: .8rem;
+  margin-bottom: 16px;
+}
+
 .image__label {
   margin-bottom: 16px;
   display: block;
