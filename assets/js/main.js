@@ -23,6 +23,38 @@ const bgColors = [
   'pink',
   'yellow'
 ];
+const dbParamAndValues = [
+  {
+    param: 'imagePause',
+    defaultValue: './assets/images/eomc.png',
+    dom: vtuberPause,
+    eveDom: inputImagePause
+  },
+  {
+    param: 'imageBlink',
+    defaultValue: './assets/images/ecmc.png',
+    dom: vtuberBlink,
+    eveDom: inputImageBlink
+  },
+  {
+    param: 'imageTalk',
+    defaultValue: './assets/images/eomo.png',
+    dom: vtuberTalk,
+    eveDom: inputImageTalk
+  },
+  {
+    param: 'imageTalkAndBlink',
+    defaultValue: './assets/images/ecmo.png',
+    dom: vtuberTalkAndBlink,
+    eveDom: inputImageTalkAndBlink
+  },
+  {
+    param: 'bgColor',
+    defaultValue: 'white',
+    dom: selectBgColor,
+    eveDom: selectBgColor
+  }
+];
 let talkingFlag = false;
 
 const db = new Dexie('easyVtuberDB');
@@ -69,89 +101,32 @@ db.version(1).stores({
   settingStore: 'param, value'
 });
 
-db.settingStore.get('imagePause').then( settingStore => {
-  vtuberPause.src = settingStore.value;
-})
-.catch( error =>{
-  db.settingStore.put({
-    param: 'imagePause',
-    value: './assets/images/eomc.png'
-  }).catch( error =>{
-    console.error(error);
+dbParamAndValues.forEach( dbParamAndValue => {
+  db.settingStore.get(dbParamAndValue.param).then( settingStore => {
+    if (dbParamAndValue.param === 'bgColor') {
+      dbParamAndValue.dom.options[bgColors.indexOf(settingStore.value)].selected = true;
+      changeBgColor(dbParamAndValue.dom);
+    } else {
+      dbParamAndValue.dom.src = settingStore.value;
+    }
+  })
+  .catch( error =>{
+    db.settingStore.put({
+      param: dbParamAndValue.param,
+      value: dbParamAndValue.defaultValue
+    }).catch( error =>{
+      console.error(error);
+    });
   });
-});
-db.settingStore.get('imageBlink').then( settingStore => {
-  vtuberBlink.src = settingStore.value;
-})
-.catch( error =>{
-  console.log(error);
-  console.log('---');
-  console.log('Data initialize.');
-  db.settingStore.put({
-    param: 'imageBlink',
-    value: './assets/images/ecmc.png'
-  }).catch( error =>{
-    console.error(error);
-  });
-});
-db.settingStore.get('imageTalk').then( settingStore => {
-  vtuberTalk.src = settingStore.value;
-})
-.catch( error =>{
-  console.log(error);
-  console.log('---');
-  console.log('Data initialize.');
-  db.settingStore.put({
-    param: 'imageTalk',
-    value: './assets/images/eomo.png'
-  }).catch( error =>{
-    console.error(error);
-  });
-});
-db.settingStore.get('imageTalkAndBlink').then( settingStore => {
-  vtuberTalkAndBlink.src = settingStore.value;
-})
-.catch( error =>{
-  console.log(error);
-  console.log('---');
-  console.log('Data initialize.');
-  db.settingStore.put({
-    param: 'imageTalkAndBlink',
-    value: './assets/images/ecmo.png'
-  }).catch( error =>{
-    console.error(error);
-  });
-});
-db.settingStore.get('bgColor').then( settingStore => {
-  selectBgColor.options[bgColors.indexOf(settingStore.value)].selected = true;
-  changeBgColor(selectBgColor);
-})
-.catch( error =>{
-  console.log(error);
-  console.log('---');
-  console.log('Data initialize.');
-  db.settingStore.put({
-    param: 'bgColor',
-    value: 'white'
-  }).catch( error =>{
-    console.error(error);
-  });
-});
-
-selectBgColor.addEventListener('change', event => {
-  changeBgColor(event.target);
-});
-inputImagePause.addEventListener('change', event => {
-  choiceVtuberImage(event.target, vtuberPause, 'imagePause');
-});
-inputImageBlink.addEventListener('change', event => {
-  choiceVtuberImage(event.target, vtuberBlink, 'imageBlink');
-});
-inputImageTalk.addEventListener('change', event => {
-  choiceVtuberImage(event.target, vtuberTalk, 'imageTalk');
-});
-inputImageTalkAndBlink.addEventListener('change', event => {
-  choiceVtuberImage(event.target, vtuberTalkAndBlink, 'imageTalkAndBlink');
+  if (dbParamAndValue.param === 'bgColor') {
+    dbParamAndValue.eveDom.addEventListener('change', event => {
+      changeBgColor(event.target);
+    });
+  } else {
+    dbParamAndValue.eveDom.addEventListener('change', event => {
+      choiceVtuberImage(event.target, dbParamAndValue.dom, dbParamAndValue.param);
+    });
+  }
 });
 
 recognition.lang = langCode;

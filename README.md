@@ -1,4 +1,4 @@
-# easyVtuber Ver.2.0.1
+# easyVtuber Ver.2.0.2
 
 HTML+CSS+JavaScript makes the Vtuber.
 
