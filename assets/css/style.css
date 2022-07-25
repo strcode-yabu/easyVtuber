@@ -1,17 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 :root {
   --char-width: 450px;
-  --char-height: 800px;
   --color-white: rgb(255, 255, 255);
   --color-black: rgb(0, 0, 0);
-  --color-green: rgb( 0, 255, 0);
+  --color-green: rgb(0, 255, 0);
   --color-blue: rgb(0, 0, 255);
   --color-pink: rgb(255, 0, 255);
   --color-yellow: rgb(255, 255, 0);
 }
 
 * {
-  font-family: 'Roboto', 'M PLUS 1p', sans-serif;
+  font-family: "Roboto", "M PLUS 1p", sans-serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0;
@@ -29,8 +28,7 @@ body {
 }
 
 @-webkit-keyframes breath {
-  0%,
-  100% {
+  0%, 100% {
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -41,8 +39,7 @@ body {
 }
 
 @keyframes breath {
-  0%,
-  100% {
+  0%, 100% {
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -51,43 +48,35 @@ body {
             transform: scale(1.015);
   }
 }
-
 .vtuber {
   width: var(--char-width);
-  height: var(--char-height);
+  aspect-ratio: 9/16;
   background: var(--color-white);
   border: 2px solid var(--color-black);
   overflow: hidden;
   position: relative;
 }
-
 .vtuber.bg_white {
   background: var(--color-white);
 }
-
 .vtuber.bg_green {
   background: var(--color-green);
 }
-
 .vtuber.bg_blue {
   background: var(--color-blue);
 }
-
 .vtuber.bg_pink {
   background: var(--color-pink);
 }
-
 .vtuber.bg_yellow {
   background: var(--color-yellow);
 }
-
 .vtuber__image {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-
 .vtuber--pause, .vtuber--blink, .vtuber--talk, .vtuber--talk_and_blink {
   width: 90%;
   height: 90%;
@@ -100,37 +89,28 @@ body {
   -webkit-animation: breath 2.5s infinite;
           animation: breath 2.5s infinite;
 }
-
 .vtuber--blink, .vtuber--talk, .vtuber--talk_and_blink {
   opacity: 0;
 }
-
 .vtuber--pause {
   z-index: 1;
 }
-
 .vtuber--blink {
   z-index: 2;
 }
-
 .vtuber--talk {
   z-index: 3;
 }
-
 .vtuber--talk_and_blink {
   z-index: 4;
 }
 
-.now_blink:checked + .now_talk + .vtuber--pause,
-.now_blink + .now_talk:checked + .vtuber--pause,
-.now_blink:checked + .now_talk:checked + .vtuber--pause {
+.now_blink:checked + .now_talk + .vtuber--pause, .now_blink + .now_talk:checked + .vtuber--pause, .now_blink:checked + .now_talk:checked + .vtuber--pause {
   opacity: 0;
 }
-
 .now_blink:checked + .now_talk + .vtuber--pause + .vtuber--blink {
   opacity: 1;
 }
-
 .now_blink:checked + .now_talk:checked + .vtuber--pause + .vtuber--blink + .vtuber--talk + .vtuber--talk_and_blink {
   opacity: 1;
 }
@@ -145,7 +125,6 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
-
 .wrap_left {
   margin-right: 16px;
 }
@@ -153,26 +132,21 @@ body {
 .select_box {
   font-size: 1.2rem;
   border-radius: 4px;
-  padding: .25em .75em;
+  padding: 0.25em 0.75em;
 }
-
 .select_box__white {
   background: var(--color-white);
 }
-
 .select_box__green {
   background: var(--color-green);
 }
-
 .select_box__blue {
   color: var(--color-white);
   background: var(--color-blue);
 }
-
 .select_box__pink {
   background: var(--color-pink);
 }
-
 .select_box__yellow {
   background: var(--color-yellow);
 }
@@ -180,20 +154,17 @@ body {
 .setting_section {
   margin-bottom: 32px;
 }
-
 .setting_section__title {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 8px;
 }
-
 .setting_section__title::before {
-  content: '-';
+  content: "-";
   margin-right: 8px;
 }
-
 .setting_section__paragraph {
-  font-size: .8rem;
+  font-size: 0.8rem;
   margin-bottom: 16px;
 }
 
@@ -201,7 +172,6 @@ body {
   margin-bottom: 16px;
   display: block;
 }
-
 .image__wrap {
   margin-bottom: 8px;
   display: -webkit-box;
@@ -214,14 +184,11 @@ body {
       -ms-flex-align: center;
           align-items: center;
 }
-
 .image__title {
   width: 8em;
   font-weight: bold;
 }
-
 .image__title::after {
-  content: ':';
+  content: ":";
   margin-right: 8px;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
